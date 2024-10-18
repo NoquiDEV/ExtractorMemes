@@ -1,8 +1,17 @@
-require('clave.env').config();
+require('dotenv').config();
 
-const { Client, GatewayIntentBits } = require('discord.js');
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
-const token = "tu-token-de-bot-aqui";
+const { Client, GatewayIntentBits } = require('discord.js'); // Importa Client y GatewayIntentBits
+
+// Crea una nueva instancia del cliente y especifica los intents
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds, // Permite el acceso a eventos de guild
+        GatewayIntentBits.GuildMessages, // Permite el acceso a eventos de mensajes de guild
+        GatewayIntentBits.MessageContent // Permite acceder al contenido de los mensajes
+    ]
+});
+
+const token = process.env.DISCORD_TOKEN;
 
 let latestMessages = [];
 
